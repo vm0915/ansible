@@ -1,4 +1,5 @@
+---
 - hosts: vm2
-  become: yes
+  become: true
   roles:
     - monitoring

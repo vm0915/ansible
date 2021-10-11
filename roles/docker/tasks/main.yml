@@ -1,10 +1,11 @@
+---
 - name: setup docker-ce repo
   yum_repository:
     name: docker-ce-stable
     description: Docker CE Stable - $basearch
     baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
-    enabled: yes
-    gpgcheck: yes
+    enabled: true
+    gpgcheck: true
     gpgkey: https://download.docker.com/linux/centos/gpg
 
 - name: install docker-ce
@@ -26,4 +27,4 @@
   systemd:
     name: docker
     state: started
-    enabled: yes
+    enabled: true
