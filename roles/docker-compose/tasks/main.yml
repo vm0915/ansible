@@ -1,0 +1,32 @@
+#- name: download docker-compose
+#  get_url:
+#    url: "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-{{ ansible_system }}-{{ ansible_machine }}"
+#    dest: /usr/local/bin/docker-compose
+#    mode: '755'
+
+- name: install python3 for pip3
+  yum:
+    name: python3
+    state: present
+
+- name: install epel-release for pip2
+  yum:
+    name: epel-release
+    state: present
+
+- name: install pip2 for setuptools (pip executable parametr requires setuptools for each pip)
+  yum:
+    name: python2-pip
+    state: present
+    
+- name: upgrade pip
+  pip:
+    executable: /usr/bin/pip3
+    name: pip
+    state: latest
+
+- name: install docker-compose
+  pip:
+    executable: /usr/bin/pip3
+    name: docker-compose
+    state: present

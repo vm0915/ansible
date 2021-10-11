@@ -1,0 +1,13 @@
+- name: copy docker-compose file
+  copy: 
+    src: monitoring.yml
+    dest: /home
+- name: start prometheus and grafana in docker-compose
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  community.docker.docker_compose:
+    project_src: /home
+    files: monitoring.yml
+  register: output
+- ansible.builtin.debug:
+    var: output
