@@ -1,0 +1,28 @@
+---
+- name: install python3 for pip3
+  yum:
+    name: python3
+    state: present
+
+- name: install epel-release for pip2
+  yum:
+    name: epel-release
+    state: present
+
+- name: install pip2 for setuptools (pip executable parametr requires setuptools for each pip)
+  yum:
+    name: python2-pip
+    state: present
+
+- name: upgrade pip
+  pip:
+    executable: /usr/bin/pip3
+    name: pip
+    version: 21.2.4
+    state: present
+
+- name: install docker-compose
+  pip:
+    executable: /usr/bin/pip3
+    name: docker-compose
+    state: present
