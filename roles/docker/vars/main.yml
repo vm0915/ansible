@@ -1,0 +1,5 @@
+---
+# docker versions
+docker_ce_version: 20.10.9-3.el7.x86_64
+docker_ce_cli_version: 20.10.9-3.el7.x86_64
+containerd_io_version: 1.4.11-3.1.el7.x86_64

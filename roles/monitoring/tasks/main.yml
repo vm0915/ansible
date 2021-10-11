@@ -1,8 +1,8 @@
 ---
 - name: copy docker-compose file
-  copy:
-    src: docker-compose.yml
-    dest: /home
+  template:
+    src: docker-compose.yml.j2
+    dest: /home/docker-compose.yml
     owner: root
     group: root
     mode: '664'

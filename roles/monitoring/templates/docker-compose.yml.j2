@@ -1,0 +1,11 @@
+---
+version: "3.9"
+services:
+  prometheus:
+    image: {{ prometheus_image }}
+    ports:
+      - 9091:{{ prometheus_expose_port }}
+  grafana:
+    image: {{ grafana_image }}
+    ports:
+      - 3000:{{ grafana_expose_port }}

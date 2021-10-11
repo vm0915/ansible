@@ -10,17 +10,17 @@
 
 - name: install docker-ce
   yum:
-    name: docker-ce
+    name: docker-ce-{{ docker_ce_version }}
     state: present
 
 - name: install docker-ce-cli
   yum:
-    name: docker-ce-cli
+    name: docker-ce-cli-{{ docker_ce_cli_version }}
     state: present
 
 - name: install containerd.io
   yum:
-    name: containerd.io
+    name: containerd.io-{{ containerd_io_version }}
     state: present
 
 - name: enable and start docker

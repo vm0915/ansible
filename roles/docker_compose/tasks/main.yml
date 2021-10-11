@@ -18,7 +18,7 @@
   pip:
     executable: /usr/bin/pip3
     name: pip
-    version: 21.2.4
+    version: "{{ pip3_version }}"
     state: present
 
 - name: install docker-compose
