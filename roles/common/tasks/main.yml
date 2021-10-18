@@ -1,0 +1,13 @@
+---
+- name: create docker user
+  ansible.builtin.user:
+    name: docker
+    comment: User to manage docker
+    shell: /bin/bash
+    groups: docker
+
+- name: set authorized ssh key
+  ansible.posix.authorized_key:
+    user: docker
+    state: present
+    key: "{{ docker_user_key }}"

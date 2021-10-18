@@ -1,0 +1,2 @@
+---
+docker_user_key: "{{ lookup('file', '/home/user01/.ssh/id_rsa.pub') }}"
