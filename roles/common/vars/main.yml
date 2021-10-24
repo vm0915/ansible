@@ -1,2 +1,9 @@
 ---
 docker_user_key: "{{ lookup('file', '/home/user01/.ssh/id_rsa.pub') }}"
+path_to_users_ssh_keys: /home/user01/ansible/user_keys
+users_list:
+  user01:
+    groups: [ 'user01', 'wheel' ]
+  docker:
+    groups: [ 'wheel', 'docker' ]
+

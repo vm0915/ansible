@@ -1,13 +1,14 @@
 ---
-- name: create docker user
+- name: create users
   ansible.builtin.user:
-    name: docker
-    comment: User to manage docker
+    name: "{{ item.key }}"
     shell: /bin/bash
-    groups: docker
+    groups: "{{ item.value.groups }}"
+  loop: "{{ lookup('dict', users_list) }}"
 
 - name: set authorized ssh key
   ansible.posix.authorized_key:
-    user: docker
+    user: "{{ item.key }}"
     state: present
-    key: "{{ docker_user_key }}"
+    key: "{{ lookup('file', '{{ path_to_users_ssh_keys }}/{{ item.key }}.pub') }}"
+  loop: "{{ lookup('dict', users_list) }}"
