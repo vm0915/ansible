@@ -1,0 +1,6 @@
+---
+- name: Create a prometheus container
+  docker_container:
+    name: prometheus
+    image: "{{ prometheus_image }}"
+    published_ports: "{{ prometheus_host_port }}:9090"

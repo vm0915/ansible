@@ -1,5 +1,11 @@
 ---
-- hosts: vm2
+- hosts: vm1
   become: true
   roles:
-    - common
+    - role: prometheus_docker
+    - role: grafana_docker
+    - role: node_exporter
+    - role: loki_docker
+    - role: cadviser_docker
+  vars: 
+    ansible_python_interpreter: /usr/bin/python3

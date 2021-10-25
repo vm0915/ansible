@@ -1,0 +1,20 @@
+---
+- name: copy docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: /home/docker-compose.yml
+    owner: root
+    group: root
+    mode: '664'
+  
+- name: start loki and promtail
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  community.docker.docker_compose:
+    project_src: /home
+    files: docker-compose.yml
+  register: output
+
+- name: print docker-compose up output
+  ansible.builtin.debug:
+    var: output

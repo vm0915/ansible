@@ -1,0 +1,20 @@
+---
+  - name: setup prometheus-exporters repository
+    yum_repository:
+      name: prometheus-exporters
+      description: Copr repo for prometheus-exporters owned by ibotty
+      baseurl: https://download.copr.fedorainfracloud.org/results/ibotty/prometheus-exporters/epel-7-$basearch/
+      enabled: true
+      gpgcheck: true
+      gpgkey: https://download.copr.fedorainfracloud.org/results/ibotty/prometheus-exporters/pubkey.gpg
+
+  - name: install node_exporter
+    yum:
+      name: golang-github-prometheus-node_exporter-{{ node_exporter_version }}
+      state: present
+
+  - name: enable and start node_exporter
+    systemd:
+      name: node_exporter
+      state: started
+      enabled: true

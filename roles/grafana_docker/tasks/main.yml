@@ -1,0 +1,6 @@
+---
+- name: Create a grafana container
+  docker_container:
+    name: grafana
+    image: "{{ grafana_image }}"
+    published_ports: "{{ grafana_host_port }}:3000"
