@@ -1,6 +1,43 @@
 ---
+- name: Create dir for prometheus storage
+  ansible.builtin.file:
+    path: /var/prometheus/data
+    state: directory
+    owner: 65534
+    mode: '0750'
+
+- name: Copy config file prometheus.yml
+  ansible.builtin.copy:
+    src: prometheus.yml
+    dest: /var/prometheus/prometheus.yml
+    owner: 65534
+    mode: '0664'
+
 - name: Create a prometheus container
   docker_container:
     name: prometheus
     image: "{{ prometheus_image }}"
+    recreate: true
     published_ports: "{{ prometheus_host_port }}:9090"
+    volumes: 
+      - /var/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - /var/prometheus/data:/prometehus/
+    command:
+      - '--storage.tsdb.path=/prometehus/'
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+
+- name: Get infos on container
+  docker_container_info:
+    name: prometheus
+  register: output
+
+#- name: print docker-compose up output
+#  ansible.builtin.debug:
+#    var: output
+
+- name: Print the status of the container
+  debug:
+    msg: "The container status is {{ output.container['State']['Status'] }}"
+  failed_when: "output.container['State']['Status'] != 'running'"

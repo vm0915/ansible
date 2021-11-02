@@ -3,6 +3,8 @@
   become: true
   roles:
     - role: prometheus_docker
+      tags: prometheus
+      
     - role: grafana_docker
     - role: node_exporter
     - role: loki_docker
