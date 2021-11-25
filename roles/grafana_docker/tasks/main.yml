@@ -1,6 +1,72 @@
 ---
+- name: Create dir for grafana datasource config
+  ansible.builtin.file:
+    path: /etc/grafana/provisioning/datasources/
+    state: directory
+    owner: root
+    mode: '0750'
+
+- name: Create dir for grafana dashboards config
+  ansible.builtin.file:
+    path: /etc/grafana/provisioning/dashboards/
+    state: directory
+    owner: root
+    mode: '0750'
+
+- name: Copy grafana datasources config
+  ansible.builtin.copy:
+    src: prometheus.yml
+    dest: /etc/grafana/provisioning/datasources/prometheus.yml
+    owner: root
+    mode: '0664'
+
+- name: Copy grafana dashboard provider config
+  ansible.builtin.copy:
+    src: default.yml
+    dest: /etc/grafana/provisioning/dashboards/default.yml
+    owner: root
+    mode: '0664'
+
+- name: Create dir for grafana dashboard jsons
+  ansible.builtin.file:
+    path: /var/lib/grafana/dashboards/
+    state: directory
+    owner: root
+    mode: '0750'
+
+- name: Copy grafana node_exporter dashboard json 
+  ansible.builtin.copy:
+    src: node-exporter.json
+    dest: /var/lib/grafana/dashboards/node-exporter.json
+    owner: root
+    mode: '0664'
+
 - name: Create a grafana container
   docker_container:
     name: grafana
     image: "{{ grafana_image }}"
+    recreate: true
     published_ports: "{{ grafana_host_port }}:3000"
+    volumes:
+      - /etc/grafana/provisioning/datasources/prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml
+      - /etc/grafana/provisioning/dashboards/default.yml:/etc/grafana/provisioning/dashboards/default.yml
+      - /var/lib/grafana/dashboards/node-exporter.json:/var/lib/grafana/dashboards/node-exporter.json
+
+- name: Get infos on container
+  docker_container_info:
+    name: grafana
+  register: output
+
+- name: Print the status of the container
+  debug:
+    msg: "The grafana container status is {{ output.container['State']['Status'] }}"
+  failed_when: "output.container['State']['Status'] != 'running'"
+
+- name: Check that you can connect (GET) to {{ ansible_host }}:{{ grafana_host_port }} page and it returns a status 200 
+  uri: 
+    url: "http://{{ ansible_host }}:{{ grafana_host_port }}" 
+    method: GET 
+  register: _result 
+  until: _result.status == 200 
+  retries: 5 
+  delay: 1

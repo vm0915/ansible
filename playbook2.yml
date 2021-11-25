@@ -2,12 +2,25 @@
 - hosts: vm1
   become: true
   roles:
+    - role: docker
+      tags: docker
+    
     - role: prometheus_docker
       tags: prometheus
+    
+    - role: node_exporter
+      tags: node_exporter
+
+    - role: monitoring
+      tags: monitoring
       
     - role: grafana_docker
+      tags: grafana
+
     - role: node_exporter
     - role: loki_docker
+
     - role: cadviser_docker
+      tags: cadviser
   vars: 
     ansible_python_interpreter: /usr/bin/python3

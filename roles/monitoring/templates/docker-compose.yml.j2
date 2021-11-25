@@ -5,6 +5,12 @@ services:
     image: {{ prometheus_image }}
     ports:
       - {{ prometheus_host_port }}:9090
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
   grafana:
     image: {{ grafana_image }}
     ports:

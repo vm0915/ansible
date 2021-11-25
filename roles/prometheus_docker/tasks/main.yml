@@ -39,5 +39,14 @@
 
 - name: Print the status of the container
   debug:
-    msg: "The container status is {{ output.container['State']['Status'] }}"
+    msg: "The prometheus container status is {{ output.container['State']['Status'] }}"
   failed_when: "output.container['State']['Status'] != 'running'"
+
+- name: Check that you can connect (GET) to {{ ansible_host }}:{{ prometheus_host_port }} page and it returns a status 200 
+  uri: 
+    url: "http://{{ ansible_host }}:{{ prometheus_host_port }}" 
+    method: GET 
+  register: _result 
+  until: _result.status == 200 
+  retries: 5 
+  delay: 1
