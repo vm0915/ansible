@@ -18,3 +18,13 @@
 - name: print docker-compose up output
   ansible.builtin.debug:
     var: output
+
+- name: Print the status of the loki container
+  debug:
+    msg: "The loki container status is "output.services['loki']['home_loki_1']['state']['status']"
+  failed_when: "output.services['loki']['home_loki_1']['state']['status'] != 'running'"
+
+- name: Print the status of the promtail container
+  debug:
+    msg: "The promtail container status is "output.services['promtail']['home_promtail_1']['state']['status']"
+  failed_when: "output.services['promtail']['home_promtail_1']['state']['status'] != 'running'"

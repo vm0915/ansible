@@ -6,21 +6,28 @@
       tags: docker
     
     - role: prometheus_docker
-      tags: prometheus
+      tags: 
+        - prometheus
+        - monitoring
     
     - role: node_exporter
-      tags: node_exporter
-
-    - role: monitoring
-      tags: monitoring
+      tags: 
+        - node_exporter
+        - monitoring
       
     - role: grafana_docker
-      tags: grafana
+      tags: 
+        - grafana
+        - monitoring
 
-    - role: node_exporter
     - role: loki_docker
+      tags:
+        - loki
 
     - role: cadviser_docker
-      tags: cadviser
+      tags: 
+        - cadviser
+        - monitoring
+
   vars: 
     ansible_python_interpreter: /usr/bin/python3
