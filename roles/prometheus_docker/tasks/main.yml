@@ -33,9 +33,9 @@
     name: prometheus
   register: output
 
-- name: print docker-compose up output
-  ansible.builtin.debug:
-    var: output
+#- name: print docker-compose up output
+#  ansible.builtin.debug:
+#    var: output
 
 - name: Print the status of the container
   debug:
