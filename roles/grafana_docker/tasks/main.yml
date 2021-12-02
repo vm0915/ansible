@@ -13,10 +13,17 @@
     owner: root
     mode: '0750'
 
-- name: Copy grafana datasources config
+- name: Copy grafana datasource prometheus config
   ansible.builtin.copy:
     src: prometheus.yml
     dest: /etc/grafana/provisioning/datasources/prometheus.yml
+    owner: root
+    mode: '0664'
+
+- name: Copy grafana datasource loki config
+  ansible.builtin.copy:
+    src: loki.yml
+    dest: /etc/grafana/provisioning/datasources/loki.yml
     owner: root
     mode: '0664'
 
@@ -49,6 +56,7 @@
     published_ports: "{{ grafana_host_port }}:3000"
     volumes:
       - /etc/grafana/provisioning/datasources/prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml
+      - /etc/grafana/provisioning/datasources/loki.yml:/etc/grafana/provisioning/datasources/loki.yml
       - /etc/grafana/provisioning/dashboards/default.yml:/etc/grafana/provisioning/dashboards/default.yml
       - /var/lib/grafana/dashboards/node-exporter.json:/var/lib/grafana/dashboards/node-exporter.json
 
