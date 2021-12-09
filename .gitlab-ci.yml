@@ -6,6 +6,6 @@ lintcheck:
   image: quay.io/ansible/ansible-runner:stable-2.11-devel
   before_script:
     - git clone https://gitlab.com/vm0915/ansible.git
-    - pip3 install "ansible-lint[yamllint]"
+    - pip3 install "ansible-lint[community,yamllint]"
   script:
     - ansible-lint
