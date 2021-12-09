@@ -1,0 +1,12 @@
+stages:
+  - lintcheck
+
+lintcheck:
+  stage: lintcheck
+  image: quay.io/ansible/ansible-runner:stable-2.11-devel
+  before_script:
+    - yum install git
+    - git clone git@gitlab.com:vm0915/ansible.git
+    - pip3 install "ansible-lint[yamllint]"
+  script:
+    - ansible-lint
