@@ -3,6 +3,11 @@ galaxy_info:
   author: Vladimir
   description: Setup docker-compose
   company: Test
+  license: Something
+  min_ansible_version: core 2.11.4
+  platforms:
+    - name: Linux
+
 
 dependencies:
   - role: docker

@@ -71,7 +71,7 @@
   failed_when: "output.container['State']['Status'] != 'running'"
 
 - name: Check that you can connect (GET) to {{ ansible_host }}:{{ grafana_host_port }} page and it returns a status 200
-  uri: 
+  uri:
     url: "http://{{ ansible_host }}:{{ grafana_host_port }}"
     method: GET
   register: _result
