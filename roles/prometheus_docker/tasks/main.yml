@@ -33,7 +33,7 @@
     name: prometheus
   register: output
 
-#- name: print docker-compose up output
+# - name: print docker-compose up output
 #  ansible.builtin.debug:
 #    var: output
 
