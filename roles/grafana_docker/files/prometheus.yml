@@ -9,7 +9,7 @@ datasources:
     # <string, required> datasource type. Required
     type: prometheus
     # <string, required> access mode. proxy or direct (Server or Browser in the UI). Required
-    access: direct
+    access: proxy
     
     url: http://192.168.0.101:9090
        

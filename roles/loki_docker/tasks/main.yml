@@ -1,6 +1,36 @@
 ---
+- name: Create dir for loki config
+  ansible.builtin.file:
+    path: /etc/loki
+    state: directory
+    owner: root
+    mode: '0750'
+
+- name: Create dir for promtail config
+  ansible.builtin.file:
+    path: /etc/promtail
+    state: directory
+    owner: root
+    mode: '0750'
+
+- name: Copy loki config
+  ansible.builtin.template:
+    src: loki_config.yml
+    dest: /etc/loki/local-config.yml
+    owner: root
+    group: root
+    mode: '0664'
+
+- name: Copy promtail config
+  ansible.builtin.template:
+    src: promtail_config.yml
+    dest: /etc/promtail/config.yml
+    owner: root
+    group: root
+    mode: '0664'
+
 - name: copy docker-compose file
-  template:
+  ansible.builtin.template:
     src: docker-compose.yml.j2
     dest: /home/docker-compose.yml
     owner: root
