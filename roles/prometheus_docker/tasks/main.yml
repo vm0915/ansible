@@ -7,7 +7,7 @@
     mode: '0750'
 
 - name: Copy config file prometheus.yml
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: prometheus.yml
     dest: /var/prometheus/prometheus.yml
     owner: 65534
