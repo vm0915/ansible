@@ -10,8 +10,6 @@ datasources:
     type: prometheus
     # <string, required> access mode. proxy or direct (Server or Browser in the UI). Required
     access: proxy
-    
     url: http://192.168.0.101:9090
-       
     # <bool> allow users to edit datasources from the UI.
     editable: true

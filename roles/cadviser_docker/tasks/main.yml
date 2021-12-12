@@ -20,11 +20,11 @@
     msg: "The cadvisor container status is {{ output.container['State']['Status'] }}"
   failed_when: "output.container['State']['Status'] != 'running'"
 
-- name: Check that you can connect (GET) to {{ ansible_host }}:{{ cadvisor_hostport }} page and it returns a status 200 
-  uri: 
-    url: "http://{{ ansible_host }}:{{ cadvisor_hostport }}" 
-    method: GET 
-  register: _result 
-  until: _result.status == 200 
-  retries: 5 
+- name: Check that you can connect (GET) to {{ ansible_host }}:{{ cadvisor_hostport }} page and it returns a status 200
+  uri:
+    url: "http://{{ ansible_host }}:{{ cadvisor_hostport }}"
+    method: GET
+  register: _result
+  until: _result.status == 200
+  retries: 5
   delay: 1

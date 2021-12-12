@@ -36,7 +36,7 @@
     owner: root
     group: root
     mode: '664'
-  
+
 - name: start loki and promtail
   vars:
     ansible_python_interpreter: /usr/bin/python3

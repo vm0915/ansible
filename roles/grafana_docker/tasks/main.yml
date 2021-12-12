@@ -41,7 +41,7 @@
     owner: root
     mode: '0750'
 
-- name: Copy grafana node_exporter dashboard json 
+- name: Copy grafana node_exporter dashboard json
   ansible.builtin.copy:
     src: node-exporter.json
     dest: /var/lib/grafana/dashboards/node-exporter.json
@@ -70,11 +70,11 @@
     msg: "The grafana container status is {{ output.container['State']['Status'] }}"
   failed_when: "output.container['State']['Status'] != 'running'"
 
-- name: Check that you can connect (GET) to {{ ansible_host }}:{{ grafana_host_port }} page and it returns a status 200 
+- name: Check that you can connect (GET) to {{ ansible_host }}:{{ grafana_host_port }} page and it returns a status 200
   uri: 
-    url: "http://{{ ansible_host }}:{{ grafana_host_port }}" 
-    method: GET 
-  register: _result 
-  until: _result.status == 200 
-  retries: 5 
+    url: "http://{{ ansible_host }}:{{ grafana_host_port }}"
+    method: GET
+  register: _result
+  until: _result.status == 200
+  retries: 5
   delay: 1

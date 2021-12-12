@@ -4,9 +4,9 @@
   roles:
     - {role: docker, tags: ["docker"]}
     - {role: prometheus_docker, tags: ["prometheus", "monitoring"]}
-    - {role: node_exporter, tags: ["node_exporter", "monitoring"]}     
+    - {role: node_exporter, tags: ["node_exporter", "monitoring"]}
     - {role: grafana_docker, tags: ["grafana", "monitoring"]}
     - {role: loki_docker, tags: ["loki", monitoring]}
     - {role: cadviser_docker, tags: ["cadviser", "monitoring"]}
-  vars: 
+  vars:
     ansible_python_interpreter: /usr/bin/python3

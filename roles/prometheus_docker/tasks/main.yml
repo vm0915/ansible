@@ -19,7 +19,7 @@
     image: "{{ prometheus_image }}"
     recreate: true
     published_ports: "{{ prometheus_host_port }}:9090"
-    volumes: 
+    volumes:
       - /var/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - /var/prometheus/data:/prometehus/
     command:
@@ -42,11 +42,11 @@
     msg: "The prometheus container status is {{ output.container['State']['Status'] }}"
   failed_when: "output.container['State']['Status'] != 'running'"
 
-- name: Check that you can connect (GET) to {{ ansible_host }}:{{ prometheus_host_port }} page and it returns a status 200 
-  uri: 
-    url: "http://{{ ansible_host }}:{{ prometheus_host_port }}" 
-    method: GET 
-  register: _result 
-  until: _result.status == 200 
-  retries: 5 
+- name: Check that you can connect (GET) to {{ ansible_host }}:{{ prometheus_host_port }} page and it returns a status 200
+  uri:
+    url: "http://{{ ansible_host }}:{{ prometheus_host_port }}"
+    method: GET
+  register: _result
+  until: _result.status == 200
+  retries: 5
   delay: 1
