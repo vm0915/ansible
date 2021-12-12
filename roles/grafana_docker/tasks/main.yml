@@ -14,14 +14,14 @@
     mode: '0750'
 
 - name: Copy grafana datasource prometheus config
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: prometheus.yml
     dest: /etc/grafana/provisioning/datasources/prometheus.yml
     owner: root
     mode: '0664'
 
 - name: Copy grafana datasource loki config
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: loki.yml
     dest: /etc/grafana/provisioning/datasources/loki.yml
     owner: root

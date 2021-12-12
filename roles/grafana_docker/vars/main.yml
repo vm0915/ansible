@@ -1,3 +1,5 @@
 ---
 grafana_image: grafana/grafana:8.2.1
 grafana_host_port: 3000
+loki_datasource_ip: "{{ ansible_host }}"
+prometheus_datasource_ip: "{{ ansible_host }}"

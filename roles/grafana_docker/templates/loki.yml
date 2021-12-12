@@ -1,15 +1,11 @@
-# config file version
 apiVersion: 1
-
-# list of datasources to insert/update depending
-# what's available in the database
 datasources:
   # <string, required> name of the datasource. Required
-  - name: Prometheus
+  - name: Loki
     # <string, required> datasource type. Required
-    type: prometheus
+    type: loki
     # <string, required> access mode. proxy or direct (Server or Browser in the UI). Required
     access: proxy
-    url: http://192.168.0.101:9090
+    url: http://{{ loki_datasource_ip }}:3100
     # <bool> allow users to edit datasources from the UI.
     editable: true
