@@ -3,7 +3,7 @@ stages:
 
 lintcheck:
   stage: lintcheck
-  image: vm0915/ansible:a0.7
+  image: vm0915/ansible:a0.8
   script:
     - whoami
     - id
