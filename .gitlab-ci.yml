@@ -3,8 +3,14 @@ stages:
 
 lintcheck:
   stage: lintcheck
-  image: vm0915/ansible:0.2
-  before_script:
-    - git clone https://gitlab.com/vm0915/ansible.git
+  image: vm0915/ansible:a0.8
   script:
+    - whoami
+    - id
+    - echo ~
+    - pwd
+    - ls -lah
+    - ls -lah /root
+    - ls -lah /root/.config/yamllint
+    - yamllint .
     - ansible-lint
