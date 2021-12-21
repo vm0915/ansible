@@ -11,6 +11,6 @@ lintcheck:
     - pwd
     - ls -lah
     - ls -lah /root
-    - ls -lah /root/.config
-    - yamllint 
+    - ls -lah /root/.config/yamllint
+    - yamllint .
     - ansible-lint
