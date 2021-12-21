@@ -1,9 +1,9 @@
-FROM python:3.11.0a3-slim
+FROM ubuntu:20.04
 
-RUN apt update && \
-    apt-get install -y build-essential libffi-dev git && \
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip && \
     python3 -m pip install --upgrade pip && \
     python3 -m pip install ansible && \
     python3 -m pip install "ansible-lint[community,yamllint]"
 
-CMD [ "ansible-lint" ]
+CMD [ "/bin/sh" ]
