@@ -1,7 +1,6 @@
-FROM ubuntu:20.04
+FROM alpine:3.15.0
 
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip && \
+RUN apk add --no-cache python3 py3-pip build-base python3-dev libffi-dev && \
     python3 -m pip install --upgrade pip && \
     python3 -m pip install ansible && \
     python3 -m pip install "ansible-lint[community,yamllint]"
