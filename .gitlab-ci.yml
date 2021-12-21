@@ -1,16 +1,10 @@
+---
 stages:
   - lintcheck
 
 lintcheck:
   stage: lintcheck
-  image: vm0915/ansible:a0.8
+  image: vm0915/ansible:a0.9
   script:
-    - whoami
-    - id
-    - echo ~
-    - pwd
-    - ls -lah
-    - ls -lah /root
-    - ls -lah /root/.config/yamllint
     - yamllint .
     - ansible-lint
