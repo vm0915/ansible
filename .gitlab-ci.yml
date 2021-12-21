@@ -8,6 +8,8 @@ lintcheck:
     - whoami
     - id
     - echo ~
+    - pwd
     - ls -lah
+    - ls -lah /root
     - yamllint 
     - ansible-lint
