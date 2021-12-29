@@ -1,16 +1,16 @@
 ---
+image: vm0915/ansible:a0.9
+
 stages:
   - lintcheck
 
 yamllint:
   stage: lintcheck
-  image: vm0915/ansible:a0.9
   script:
     - yamllint .
   allow_failure: true
 
 ansible_lint:
   stage: lintcheck
-  image: vm0915/ansible:a0.9
   script:
     - ansible-lint
