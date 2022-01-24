@@ -13,6 +13,8 @@ stages:
 
 test:
   stage: test
+  script:
+  - echo "Testing"
 
 yamllint:
   stage: lintcheck
