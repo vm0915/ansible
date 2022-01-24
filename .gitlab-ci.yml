@@ -11,6 +11,9 @@ include:
 stages:
 - lintcheck
 - test
+secret-detection:
+  when: manual
+
 test:
   stage: test
   script:
