@@ -13,7 +13,8 @@ stages:
 - test
 secret_detection:
   when: manual
-
+kics-iac-sast:
+  when: manual
 test:
   stage: test
   script:
