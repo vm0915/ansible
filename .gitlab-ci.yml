@@ -18,6 +18,8 @@ test:
   artifacts:
     paths:
       - gl-secret-detection-report.json
+    name: 123.json
+    when: always
 
 yamllint:
   stage: lintcheck
