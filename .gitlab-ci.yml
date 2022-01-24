@@ -11,7 +11,7 @@ include:
 stages:
 - lintcheck
 - test
-secret-detection:
+secret_detection:
   when: manual
 
 test:
