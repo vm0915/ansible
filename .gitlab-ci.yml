@@ -15,6 +15,7 @@ test:
   stage: test
   script:
   - echo "Testing"
+  when: manual
 yamllint:
   stage: lintcheck
   script:
