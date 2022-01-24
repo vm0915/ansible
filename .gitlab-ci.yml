@@ -9,11 +9,17 @@ include:
 - template: Security/Secret-Detection.gitlab-ci.yml
 stages:
 - lintcheck
+- test
+
+test:
+  stage: test
+
 yamllint:
   stage: lintcheck
   script:
   - yamllint .
   when: manual
+
 ansible_lint:
   stage: lintcheck
   script:
