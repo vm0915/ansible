@@ -7,26 +7,24 @@
 image: vm0915/ansible:a0.9
 include:
 - template: Security/Secret-Detection.gitlab-ci.yml
+- template: Security/SAST-IaC.latest.gitlab-ci.yml
 stages:
 - lintcheck
 - test
-
 test:
   stage: test
   script:
   - echo "Testing"
   artifacts:
     paths:
-      - gl-secret-detection-report.json
+    - gl-secret-detection-report.json
     name: 123.json
     when: always
-
 yamllint:
   stage: lintcheck
   script:
   - yamllint .
   when: manual
-
 ansible_lint:
   stage: lintcheck
   script:
