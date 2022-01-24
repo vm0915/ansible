@@ -15,11 +15,6 @@ test:
   stage: test
   script:
   - echo "Testing"
-  artifacts:
-    paths:
-    - gl-secret-detection-report.json
-    name: 123.json
-    when: always
 yamllint:
   stage: lintcheck
   script:
