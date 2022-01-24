@@ -8,9 +8,10 @@ yamllint:
   stage: lintcheck
   script:
     - yamllint .
-  allow_failure: true
+  when: manual
 
 ansible_lint:
   stage: lintcheck
   script:
     - ansible-lint
+  when: manual
