@@ -30,6 +30,7 @@ deploy:
   script:
     - echo pwd
     - echo $AWS_KEY
+    - chmod 0600 $AWS_KEY
     - export ANSIBLE_CONFIG=`pwd`/ansible.cfg
     - ansible-playbook -i inventory/all.yml --private-key $AWS_KEY playbook2.yml --tags=python3
 #  when: manual
