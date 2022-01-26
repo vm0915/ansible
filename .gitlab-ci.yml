@@ -28,8 +28,9 @@ test:
 deploy:
   stage: deploy
   script:
+    - ANSIBLE_CONFIG=$ANSIBLE_CFG
     - ansible-playbook -i inventory/all.yml --private-key $AWS_KEY playbook2.yml --tags=python3
-  when: manual
+#  when: manual
 
 yamllint:
   stage: lintcheck
