@@ -28,7 +28,9 @@ test:
 deploy:
   stage: deploy
   script:
-    - ANSIBLE_CONFIG=$ANSIBLE_CFG
+    - echo $ANSIBLE_CFG
+    - echo $AWS_KEY
+    - export ANSIBLE_CONFIG=$ANSIBLE_CFG
     - ansible-playbook -i inventory/all.yml --private-key $AWS_KEY playbook2.yml --tags=python3
 #  when: manual
 
