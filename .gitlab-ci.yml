@@ -9,19 +9,29 @@ include:
 - template: Security/Secret-Detection.gitlab-ci.yml
 - template: Security/SAST-IaC.latest.gitlab-ci.yml
 stages:
-- lintcheck
 - test
+- deploy
+- lintcheck
+
 secret_detection:
   when: manual
 kics-iac-sast:
   when: manual
+
 test:
   stage: test
   script:
   - echo "Testing"
   - echo $AWS_KEY
   - ip a
-#  when: manual
+  when: manual
+
+deploy:
+  stage: deploy
+  script:
+    - ansible-playbook -i inventory/all.yml playbook2.yml --tags=python3
+  when: manual
+
 yamllint:
   stage: lintcheck
   script:
