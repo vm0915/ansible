@@ -19,9 +19,9 @@ test:
   stage: test
   script:
   - echo "Testing"
-  - ssh centos@52.29.146.32 -i $AWS_KEY
+  - echo $AWS_KEY
   - ip a
-  when: manual
+#  when: manual
 yamllint:
   stage: lintcheck
   script:
