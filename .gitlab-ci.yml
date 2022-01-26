@@ -4,7 +4,7 @@
 # Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
 # Note that environment variables can be set in several places
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
-image: vm0915/ansible:a0.9
+image: vm0915/ansible:a1.0
 include:
 - template: Security/Secret-Detection.gitlab-ci.yml
 - template: Security/SAST-IaC.latest.gitlab-ci.yml
@@ -23,13 +23,12 @@ test:
   script:
   - echo "Testing"
   - echo $AWS_KEY
-  - ip a
   when: manual
 
 deploy:
   stage: deploy
   script:
-    - ansible-playbook -i inventory/all.yml playbook2.yml --tags=python3
+    - ansible-playbook -i inventory/all.yml --private-key $AWS_KEY playbook2.yml --tags=python3
   when: manual
 
 yamllint:
