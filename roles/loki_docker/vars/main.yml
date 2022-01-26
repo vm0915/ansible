@@ -1,4 +1,6 @@
 ---
+ansible_python_interpreter: /usr/bin/python3
+
 loki_image: grafana/loki:2.3.0
 loki_host_port: 3100
 

@@ -1,0 +1,4 @@
+---
+ansible_python_interpreter: /usr/bin/python3
+victoria_metrics_image: victoriametrics/victoria-metrics:heads-public-single-node-0-gede93469e
+victoria_metrics_host_port: 8428

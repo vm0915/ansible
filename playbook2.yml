@@ -1,12 +1,15 @@
 ---
-- hosts: vm1
+- hosts: aws
   become: true
   roles:
+    - {role: python3, tags: ["python3"]}
     - {role: docker, tags: ["docker"]}
+    - {role: docker_compose, tags: ["docker_compose"]}
     - {role: prometheus_docker, tags: ["prometheus", "monitoring"]}
     - {role: node_exporter, tags: ["node_exporter", "monitoring"]}
     - {role: grafana_docker, tags: ["grafana", "monitoring"]}
     - {role: loki_docker, tags: ["loki", monitoring]}
     - {role: cadviser_docker, tags: ["cadviser", "monitoring"]}
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
+    - {role: victoria_metrics, tags: ["victoria_metrics", "monitoring"]}
+  # vars:
+  #   ansible_python_interpreter: /usr/bin/python3

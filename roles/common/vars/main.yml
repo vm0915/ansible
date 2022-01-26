@@ -1,4 +1,5 @@
 ---
+ansible_python_interpreter: /usr/bin/python3
 docker_user_key: "{{ lookup('file','/home/user01/.ssh/id_rsa.pub') }}"
 path_to_users_ssh_keys: /home/user01/ansible/user_keys
 users_list:
