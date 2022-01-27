@@ -1,5 +1,5 @@
 ---
-- hosts: aws
+- hosts: centos2
   become: true
   roles:
     - {role: python3, tags: ["python3"]}
@@ -11,5 +11,3 @@
     - {role: loki_docker, tags: ["loki", monitoring]}
     - {role: cadviser_docker, tags: ["cadviser", "monitoring"]}
     - {role: victoria_metrics, tags: ["victoria_metrics", "monitoring"]}
-  # vars:
-  #   ansible_python_interpreter: /usr/bin/python3
