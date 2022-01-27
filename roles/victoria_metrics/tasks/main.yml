@@ -13,3 +13,22 @@
     published_ports: "{{ victoria_metrics_host_port }}:8428"
     volumes:
       - /var/victoria-metrics/data:/victoria-metrics-data
+
+- name: Get infos on container
+  docker_container_info:
+    name: victoria_metrics
+  register: output
+
+- name: Print the status of the container
+  debug:
+    msg: "The victoria_metrics container status is {{ output.container['State']['Status'] }}"
+  failed_when: "output.container['State']['Status'] != 'running'"
+
+- name: Check that you can connect (GET) to {{ ansible_host }}:{{ victoria_metrics_host_port }} page and it returns a status 200
+  uri:
+    url: "http://{{ ansible_host }}:{{ victoria_metrics_host_port }}"
+    method: GET
+  register: _result
+  until: _result.status == 200
+  retries: 5
+  delay: 1
