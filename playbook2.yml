@@ -8,6 +8,6 @@
     - {role: prometheus_docker, tags: ["prometheus", "monitoring"]}
     - {role: node_exporter, tags: ["node_exporter", "monitoring"]}
     - {role: grafana_docker, tags: ["grafana", "monitoring"]}
-    - {role: loki_docker, tags: ["loki", monitoring]}
+    - {role: loki_docker, tags: ["loki", "monitoring"]}
     - {role: cadviser_docker, tags: ["cadviser", "monitoring"]}
     - {role: victoria_metrics, tags: ["victoria_metrics", "monitoring"]}
