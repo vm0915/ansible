@@ -1,9 +1,5 @@
 ---
-<<<<<<< HEAD
-- hosts: vm1
-=======
-- hosts: centos2
->>>>>>> 57726d3b1e497a6333ad5c0f3ff81c9fd7be6774
+- hosts: vm2
   become: true
   roles:
     - {role: python3, tags: ["python3"]}
