@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 - hosts: vm1
+=======
+- hosts: centos2
+>>>>>>> 57726d3b1e497a6333ad5c0f3ff81c9fd7be6774
   become: true
   roles:
     - {role: python3, tags: ["python3"]}
@@ -8,8 +12,6 @@
     - {role: prometheus_docker, tags: ["prometheus", "monitoring"]}
     - {role: node_exporter, tags: ["node_exporter", "monitoring"]}
     - {role: grafana_docker, tags: ["grafana", "monitoring"]}
-    - {role: loki_docker, tags: ["loki", monitoring]}
+    - {role: loki_docker, tags: ["loki", "monitoring"]}
     - {role: cadviser_docker, tags: ["cadviser", "monitoring"]}
     - {role: victoria_metrics, tags: ["victoria_metrics", "monitoring"]}
-  # vars:
-  #   ansible_python_interpreter: /usr/bin/python3
