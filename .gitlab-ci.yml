@@ -11,18 +11,10 @@ include:
 stages:
 - test
 - deploy
-- lintcheck
 
 secret_detection:
   when: manual
 kics-iac-sast:
-  when: manual
-
-test:
-  stage: test
-  script:
-  - echo "Testing"
-  - echo $AWS_KEY
   when: manual
 
 deploy:
@@ -33,15 +25,15 @@ deploy:
     - chmod 0600 $AWS_KEY
     - export ANSIBLE_CONFIG=`pwd`/ansible.cfg
     - ansible-playbook -i inventory/all.yml --private-key $AWS_KEY playbook2.yml --tags=python3,monitoring
-#  when: manual
+  when: manual
 
 yamllint:
-  stage: lintcheck
+  stage: test
   script:
   - yamllint .
   when: manual
 ansible_lint:
-  stage: lintcheck
+  stage: test
   script:
   - ansible-lint
   when: manual
