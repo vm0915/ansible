@@ -1,5 +1,5 @@
 ---
-- hosts: aws
+- hosts: vm1
   become: true
   roles:
     - {role: python3, tags: ["python3"]}
