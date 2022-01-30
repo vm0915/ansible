@@ -1,5 +1,5 @@
 ---
-- hosts: vm2
+- hosts: centos2
   become: true
   roles:
     - {role: python3, tags: ["python3"]}
